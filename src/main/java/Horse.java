@@ -18,7 +18,6 @@ public class Horse {
         if (distance < 0) {
             throw new IllegalArgumentException("Distance cannot be negative.");
         }
-
         this.name = name;
         this.speed = speed;
         this.distance = distance;
@@ -47,4 +46,5 @@ public class Horse {
     public static double getRandomDouble(double min, double max) {
         return (Math.random() * (max - min)) + min;
     }
+
 }
