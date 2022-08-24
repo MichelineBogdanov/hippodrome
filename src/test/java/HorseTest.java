@@ -1,17 +1,10 @@
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.params.ParameterizedTest;
-import org.junit.jupiter.params.provider.CsvSource;
 import org.junit.jupiter.params.provider.ValueSource;
-import org.junit.platform.commons.logging.LoggerFactory;
 import org.mockito.MockedStatic;
 import org.mockito.Mockito;
 
-import java.util.concurrent.ExecutionException;
-
-import static jdk.internal.org.objectweb.asm.util.CheckClassAdapter.verify;
 import static org.junit.jupiter.api.Assertions.*;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.times;
 
 class HorseTest {
 
@@ -93,6 +86,10 @@ class HorseTest {
 
     @Test
     void checkMoveMethodCall_getRandomDouble() {
-
+        try (MockedStatic<Horse> mockedHorse = Mockito.mockStatic(Horse.class)) {
+            horse = new Horse("Mustang", 1);
+            horse.move();
+            mockedHorse.verify(() -> Horse.getRandomDouble(0.2, 0.9));
+        }
     }
 }
