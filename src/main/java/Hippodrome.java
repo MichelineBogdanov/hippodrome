@@ -1,3 +1,6 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
@@ -5,6 +8,8 @@ import java.util.List;
 import static java.util.Objects.isNull;
 
 public class Hippodrome {
+
+    private static final Logger log = LogManager.getLogger(Hippodrome.class);
 
     private final List<Horse> horses;
 
@@ -30,5 +35,12 @@ public class Hippodrome {
         return horses.stream()
                 .max(Comparator.comparing(Horse::getDistance))
                 .get();
+    }
+
+    @Override
+    public String toString() {
+        return "Hippodrome{" +
+                "horses=" + horses +
+                '}';
     }
 }

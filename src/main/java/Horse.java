@@ -1,6 +1,13 @@
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
+import java.util.Objects;
+
 import static java.util.Objects.isNull;
 
 public class Horse {
+
+    private static final Logger log = LogManager.getLogger(Horse.class);
 
     private final String name;
     private final double speed;
@@ -47,4 +54,25 @@ public class Horse {
         return (Math.random() * (max - min)) + min;
     }
 
+    @Override
+    public String toString() {
+        return "Horse{" +
+                "name='" + name + '\'' +
+                ", speed=" + speed +
+                ", distance=" + distance +
+                '}';
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Horse horse = (Horse) o;
+        return Double.compare(horse.speed, speed) == 0 && Double.compare(horse.distance, distance) == 0 && name.equals(horse.name);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(name, speed, distance);
+    }
 }
