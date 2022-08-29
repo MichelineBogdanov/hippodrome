@@ -20,7 +20,7 @@ public class Main {
                 new Horse("Вишня", 3)
         );
         Hippodrome hippodrome = new Hippodrome(horses);
-        log.error("Начало скачек. Количество участников: {}", horses.size());
+        log.info("Начало скачек. Количество участников: {}", horses.size());
         for (int i = 0; i < 4; i++) {
             hippodrome.move();
             watch(hippodrome);
@@ -29,9 +29,10 @@ public class Main {
 
         String winnerName = hippodrome.getWinner().getName();
         System.out.println("Победил " + winnerName + "!");
+        log.info("Окончание скачек. Победитель: {}", winnerName);
     }
 
-    private static void watch(Hippodrome hippodrome) throws Exception {
+    private static void watch(Hippodrome hippodrome) {
         hippodrome.getHorses().stream()
                 .map(horse -> ".".repeat((int) horse.getDistance()) + horse.getName())
                 .forEach(System.out::println);
