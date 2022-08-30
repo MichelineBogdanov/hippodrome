@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<Configuration status="warn" name="MyApp" packages="">
+<Configuration status="ERROR">
     <Appenders>
-        <RollingFile name="LogToFile"
-                     fileName="logs/hippodrome.log"
-                     filePattern="logs/hippodrome.%d{yyyy-MM-dd}.log"
-                     ignoreExeptions="false">
-            <PatternLayout pattern="%d %-5p %c: %m%n"/>
+        <RollingFile name="RollingFile" fileName="logs/hippodrome.log"
+                     filePattern="logs/hippodrome.%d{yyyy-MM-dd}.log">
+            <PatternLayout>
+                <Pattern>%d %-5p %c: %m%n</Pattern>
+            </PatternLayout>
             <TimeBasedTriggeringPolicy/>
             <DefaultRolloverStrategy>
                 <Delete basePath="logs" maxDepth="2">
@@ -17,7 +17,7 @@
     </Appenders>
     <Loggers>
         <Root level="ALL">
-            <AppenderRef ref="LogToFile"/>
+            <AppenderRef ref="RollingFile"/>
         </Root>
     </Loggers>
 </Configuration>
